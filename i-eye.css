@@ -1,0 +1,138 @@
+
+/**************************************/
+/**           Overrides              **/
+/**************************************/
+
+p {
+  padding-bottom: 10px;
+}
+
+body {
+  height: 300px;
+  padding: 20px;
+  text-align: left;
+  font-family: Lato;
+  color: #fff;
+  background: #2E2A31;
+  color: #51D2A7;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 40px;
+  font-weight: normal;
+  text-transform: uppercase;
+  float: left;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+h1 span {
+  font-size: 13px;
+  display: block;
+  padding-left: 4px;
+}
+
+
+/**************************************/
+/**               Snips              **/
+/**************************************/
+
+
+
+.small {
+  padding-left: 4px;
+  font-size: 13px;
+}
+
+
+
+/**************************************/
+/**           Components             **/
+/**************************************/
+
+/******** Tabs *********
+<ul class="tabs">
+  <li>
+    <input type="radio" name="tabs" id="tab1" class="hidden-radio"/>
+    <label for="tab1">Info</label>
+    <div id="tab-content1" class="tab-content">...</div>
+  </li>...
+</ul>
+***********************/
+
+.tabs {
+  top: -40px;
+  width: 650px;
+  float: none;
+  list-style: none;
+  position: relative;
+  margin: 80px 0 0 10px;
+  text-align: left;
+}
+.tabs li {
+  float: right;
+  display: block;
+}
+.hidden-radio {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.tabs label {
+  display: block;
+  padding: 14px 21px;
+  border-top: 3px solid #2E2A31;
+  border-left: 3px solid #2E2A31;
+  border-right: 3px solid #2E2A31;
+  border-radius: 2px 2px 0 0;
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  background: #463C4A;
+  cursor: pointer;
+  position: relative;
+  top: -1px;
+  transition: all 0.2s ease-in-out;
+  z-index: 2;
+}
+.tabs label:hover {
+  background: #703688;
+}
+.tab-content {
+  z-index: 1;
+}
+.tabs .tab-content {
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 17px;
+  line-height: 25px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  left: 0;
+  background: #463C4A;
+}
+.tabs [id^="tab"]:checked + label {
+  top: -1;
+  padding-top: 17px;
+  background: #463C4A;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+  border: 3px solid #2E2A31;
+  display: block;
+}
+
+
+/****** Buttons *******
+<button class="btn">...</button>
+***********************/
+.btn {
+  padding: 4px;
+  background-color: #AFACAC;
+  color: #051F05;
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: 3px;
+}

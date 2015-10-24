@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>i-Eye</title>
+    <link rel="stylesheet" type="text/css" href="i-eye.css" />
+  </head>
+  <body>
+
+    <h1>i eye<span>Saving two eyes at a time!</span></h1>
+    <ul class="tabs">
+      <li>
+          <input type="radio" name="tabs" id="tab2" class="hidden-radio"/>
+          <label for="tab2">Info</label>
+          <div id="tab-content2" class="tab-content">
+            <p>
+              To use, simply navigate to a bright page and press ctrl+q, or click on the eye-icon and then press Invert page. The exclude button was meant to be used on a site that for the most part is the white, but they happen to have a page that is a darker color scheme. If the url as post data, you can type the path to the page you want excluded.
+              You can also use the exclude button on pages that are not inverted. This will only invert the selected page.
+            </p>
+            <p>
+              Developed, designed and used by Jason de Belle
+            </p>
+            <p>
+              Reset to defaults <button class="btn" id="reset">RESET</button>
+            </p>
+          </div>
+      </li>
+      <li>
+          <input type="radio" name="tabs" id="tab1" checked  class="hidden-radio"/>
+          <label for="tab1">Main</label>
+          <div id="tab-content1" class="tab-content">
+            <p>
+              <button class="btn" id="invert-page">Invert Page</button> Add to auto-invert list
+            </p>
+            <p>
+              <button class="btn" id="exclude-page">Exclude Page</button><span class="small"> optional path </span><input id="excludePath"> <span class="small"> Ex. /maps/ for google.com/maps/ </span>
+            </p>
+
+          </div>
+      </li>
+    </ul>
+    <br style="clear: both;" />
+    <script src="ieyeChrome.js"></script>
+  </body>
+</html>
