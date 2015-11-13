@@ -2,7 +2,9 @@ window.addEventListener('load', (function() {
   var iEye = {
     /* the css we are going to inject */
     css:" html {-webkit-filter: invert(100%)!important;background-color: black!important;}" +
+        " #theater-background {background-color:white;}" + // Fix for youtube theater mode
         " img {-webkit-filter: invert(100%)!important;} " +
+        " iframe {-webkit-filter: invert(100%)!important;} " +
         " object {-webkit-filter: invert(100%)!important;} " +
         " video {-webkit-filter: invert(100%)!important;} " +
         " png {-webkit-filter: invert(100%)!important;} " +
@@ -35,12 +37,15 @@ window.addEventListener('load', (function() {
     },
 
     init: function() {
-      // Check / load defaults
-      if (!localStorage.keycodes) this.setDefaults();
-      this.loadFromStorage();
+      // Remove dark overlay from startDark
+      if (document.getElementById("i-eye-blocker")) {
+        document.getElementById("i-eye-blocker").parentNode.removeChild(document.getElementById("i-eye-blocker"));
+      }
 
       // Autoload if we have changed this before.
-      this.checkAutoload(this.vars.autoChange);
+      if (iEyeStorage.checkAutoload(this.host)) {
+        this.invertColor();
+      }
 
       // Listen for chrome events
       this.chromeInvertEvent();
@@ -48,32 +53,11 @@ window.addEventListener('load', (function() {
       // Add hotkey listeners
       document.documentElement.addEventListener("keypress", function(event) {
         // Toggle invert when ctrl+q is pressed.
-        if (event.charCode == 17 && event.ctrlKey) {
+        if (event.charCode == iEyeStorage.getKeyCode("invert") && event.ctrlKey) {
           this.toggleInvert();
         }
       }.bind(this));
 
-    },
-
-    checkAutoload: function(autoloadList) {
-      var url = window.location.pathname;
-      this.regEscape = function escapeRegExp(str) {
-        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      };
-      // Auto load sections
-      for (var auto in autoloadList) {
-        if (autoloadList[auto] === this.host) {
-          // Check if in the exclude list
-          for (var excludePage in this.vars.exclude[this.host]) {
-            var regex = new RegExp("^" + this.regEscape(this.vars.exclude[this.host][excludePage]) );
-            if (regex.test(url)) {
-              return false;
-            }
-          }
-
-          this.invertColor();
-        }
-      }
     },
 
     // Handle events coming
@@ -86,10 +70,10 @@ window.addEventListener('load', (function() {
               break;
             case "exclude-page":
               this.invertColor();
-              this.vars.updateObject("exclude", this.host, request.value||window.location.pathname);
+              iEyeStorage.updateObject("exclude", this.host, request.value||window.location.pathname);
               break;
             case "reset":
-              this.setDefaults();
+              iEyeStorage.setDefaults();
               break;
             default:
               console.log("i-eye: Unhandled event: " + request.action);
@@ -100,50 +84,9 @@ window.addEventListener('load', (function() {
     toggleInvert: function() {
       this.invertColor();
       // Add this page to the autoload
-      this.vars.addOrRemove("autoChange", this.host);
-    },
-
-    setDefaults: function() {
-      // First run, set the localStorage defaults.
-      localStorage.autoChange = JSON.stringify(["www.google.ca","chrome-ui://newtab", "chrome"]);
-      /* Auto invert exceptions */
-      localStorage.exclude = JSON.stringify({
-        "www.google.ca": ["/maps/"]
-      });
-      localStorage.keycodes = JSON.stringify([81]);
-    },
-
-    loadFromStorage: function() {
-      this.vars = {
-        update: function(key, value) {
-          this.vars[key] = value;
-        }.bind(this),
-        updateObject: function(varName, key, value) {
-          if (typeof this.vars[varName][key] === "undefined" ) {
-            this.vars[varName][key] = [];
-          }
-          if (this.vars[varName][key].indexOf(value) === -1) {
-            this.vars[varName][key].push(value);
-          } else {
-            delete this.vars[varName][key];
-          }
-          localStorage[varName] = JSON.stringify(this.vars[varName]);
-
-        }.bind(this),
-        addOrRemove: function(key, value) {
-          if (this.vars[key].indexOf(value) === -1) {
-            this.vars[key].push(value);
-          } else {
-            this.vars[key].splice(this.vars[key].indexOf(value), 1);
-          }
-          localStorage[key] = JSON.stringify(this.vars[key]);
-        }.bind(this)
-      };
-      this.vars.autoChange = JSON.parse(localStorage.autoChange);
-      this.vars.keycodes   = JSON.parse(localStorage.keycodes);
-      this.vars.exclude    = JSON.parse(localStorage.exclude);
+      iEyeStorage.addOrRemove("autoChange", this.host);
     }
   };
-  iEye.init();
 
+  iEye.init();
 }()));
