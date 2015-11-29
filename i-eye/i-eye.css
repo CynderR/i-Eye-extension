@@ -2,18 +2,28 @@
 /**           Overrides              **/
 /**************************************/
 
-p {
+.tab-content > div {
   padding-bottom: 10px;
+  padding-right: 10px;
 }
-
+div .heading {
+    font-size: x-large;
+    color: #EABE7C;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+.tab-content div p {
+  text-indent: 20px;
+}
 body {
-  height: 300px;
+  height: 530px;
+  overflow: auto;
   padding: 20px;
   text-align: left;
   font-family: Lato;
   color: #fff;
   background: #2E2A31;
-  color: #51D2A7;
+  color: #D9DD92;
 }
 
 h1 {
@@ -32,6 +42,16 @@ h1 span {
   padding-left: 4px;
 }
 
+input {
+  background-color: #26292B;
+  color: #DD6031;
+}
+
+::-webkit-input-placeholder {
+  color: #EABE7C;
+  opacity: 0.8;
+  padding-left: 15px;
+}
 
 /**************************************/
 /**             Snippets             **/
@@ -61,7 +81,7 @@ h1 span {
   float: none;
   list-style: none;
   position: relative;
-  margin: 80px 0 0 10px;
+  margin: 80px 45px 0 10px;
   text-align: left;
 }
 .tabs li {
@@ -76,14 +96,14 @@ h1 span {
 .tabs label {
   display: block;
   padding: 14px 21px;
-  border-top: 3px solid #2E2A31;
-  border-left: 3px solid #2E2A31;
-  border-right: 3px solid #2E2A31;
+  border-top: 3px solid #4F464B;
+  border-left: 3px solid #4F464B;
+  border-right: 3px solid #4F464B;
   border-radius: 2px 2px 0 0;
   font-size: 20px;
   font-weight: normal;
   text-transform: uppercase;
-  background: #463C4A;
+  background: #36393B;
   cursor: pointer;
   position: relative;
   top: -1px;
@@ -91,7 +111,7 @@ h1 span {
   z-index: 2;
 }
 .tabs label:hover {
-  background: #703688;
+  background: #C49799;
 }
 .tab-content {
   z-index: 1;
@@ -99,22 +119,25 @@ h1 span {
 .tabs .tab-content {
   display: none;
   overflow: hidden;
-  width: 100%;
+  width: 95%;
   font-size: 17px;
   line-height: 25px;
   padding: 25px;
   position: absolute;
   top: 53px;
   left: 0;
-  background: #463C4A;
+  margin-bottom: 10px;
+  background: #36393B;
+  overflow: auto;
+  max-height: 375px;
 }
 .tabs [id^="tab"]:checked + label {
   top: -1;
   padding-top: 17px;
-  background: #463C4A;
+  background: #36393B;
 }
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
-  border: 3px solid #2E2A31;
+  border: 3px solid #4F464B;
   display: block;
 }
 
@@ -128,4 +151,9 @@ h1 span {
   font-weight: 800;
   font-size: 15px;
   border-radius: 3px;
+}
+
+.warrning {
+  background-color: #DD6031;
+  color: #ECE4B7;
 }

@@ -3,7 +3,7 @@
 
   "name": "i-Eye Chrome extension",
   "description": "This extension inverts most of the colors on a page",
-  "version": "1.0",
+  "version": "1.1.0",
 
   "browser_action": {
     "default_icon": "ieye.png",

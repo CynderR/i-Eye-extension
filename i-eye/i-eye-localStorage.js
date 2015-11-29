@@ -74,8 +74,8 @@ var iEyeStorage = {
   }
 };
 
-iEyeStorage.data.autoChange = JSON.parse(localStorage.autoChange);
-iEyeStorage.data.keycodes   = JSON.parse(localStorage.keycodes);
-iEyeStorage.data.exclude    = JSON.parse(localStorage.exclude);
+iEyeStorage.data.autoChange = localStorage.autoChange ? JSON.parse(localStorage.autoChange) : [];
+iEyeStorage.data.keycodes   = localStorage.keycodes   ? JSON.parse(localStorage.keycodes)   : {};
+iEyeStorage.data.exclude    = localStorage.exclude    ? JSON.parse(localStorage.exclude)    : {};
 
 iEyeStorage.loadStorage();

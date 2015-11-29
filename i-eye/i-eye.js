@@ -9,6 +9,10 @@ window.addEventListener('load', (function() {
         " video {-webkit-filter: invert(100%)!important;} " +
         " png {-webkit-filter: invert(100%)!important;} " +
         " * {color:#663355;} " +
+        // Github red&green code review
+        " .blob-num-deletion, .blob-code-deletion {-webkit-filter: invert(100%)!important;opacity:0.3;} " +
+        " .blob-num-addition, .blob-code-addition {-webkit-filter: invert(100%)!important;opacity:0.3;} " +
+        // Jira red&green code review
         " .added.modified.line {-webkit-filter: invert(100%)!important;} " +
         " .removed.modified.line {-webkit-filter: invert(100%)!important;}",
 
